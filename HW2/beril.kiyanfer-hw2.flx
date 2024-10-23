@@ -1,0 +1,35 @@
+%{
+#include "beril.kiyanfer-hw2.tab.h" 
+#include <string.h>
+%}
+
+%%
+
+"input"      { return tINPUT; }
+"output"     { return tOUTPUT; }
+"node"       { return tNODE; }
+"evaluate"   { return tEVALUATE; }
+
+"and"        { return tAND; }
+"or"         { return tOR; }
+"xor"        { return tXOR; }
+"not"        { return tNOT; }
+
+"true"       { return tTRUE; }
+"false"      { return tFALSE; }
+
+"="          { return tASSIGN; }
+","          { return tCOMMA; }
+"("          { return tLPR; }
+")"          { return tRPR; }
+
+[a-zA-Z][a-zA-Z0-9]*  { yylval.str = strdup(yytext); return tIDENTIFIER; }
+
+[ \t\n]+     
+.            
+
+%%
+
+int yywrap() {
+    return 1;
+}
